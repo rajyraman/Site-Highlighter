@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="options.style.css">
+	<meta charset="UTF-8">
+	<title>Site Highligher Options</title>
+</head>
+<body>
+    <p><b>Site Highligher Options</b></p>
+	<div class="flexcontainer flexcolumn" id="mainContainer">
+        <div class="flexitem">
+            <form id="main">
+                <div class="error hidden" id="errorDiv">
+                    Please fill in all the fields
+                </div>                
+                <input type="text" id="settingid" hidden></input>
+                <div><input type="text" id="sitetype" list="sitetypes" placeholder="Site Classification" required></div>
+                <datalist id="sitetypes">
+                <option value="UAT">
+                <option value="Development">
+                <option value="Production">
+                <option value="Pre-Prod">
+                <option value="Test">
+                <option value="Backup">
+                </datalist>            
+                <div><input type="text" id="siteurl" placeholder="Site URL" required></div>
+                <div><input style="width:80%;" type="text" id="sitecolour" placeholder="Colour" disabled>
+                <input style="width:10%;" type="color" id="colourpicker" required></div>
+                <div>
+                    <select name="siteElementType" id="siteElementType">
+                        <option value="id">Element Id</option>                    
+                        <option value="class">CSS Class</option>
+                        <option value="tag">Tag Name</option>
+                    </select>
+                    <input style="width:80%;"  type="text" id="siteelementid" placeholder="Element Id/Class Name/Tag Name" required>                
+                </div>             
+                <div id="buttonrow">
+                    <button id="add" type="submit">Add</button>
+                    <button id="update" class="hidden" type="submit">Update</button>
+                    <button id="delete" class="hidden" type="submit">Delete</button>
+                    <button id="clear" type="submit">Remove All</button>
+                </div>
+            </form>            
+        </div>
+	</div>
+	<div>
+		<div class="flexcontainer flexcolumn">
+			<div class="flexitem flexcontainer flexcolumn" id="environments">                                                                 
+			</div>
+		</div>
+	</div>
+    <script id="environment-template" type="x-tmpl-mustache">
+        {{#.}}
+            <div class="flexitem sitecard" data-setting-key="{{id}}">
+                <div style="display: inline-flex;" data-setting-key="{{id}}">
+                    <div class="colorindicator" style="background-color:{{colour}};" data-setting-key="{{id}}"></div>{{type}}
+                </div>
+                <div data-setting-key="{{id}}">{{siteUrl}}</div>
+                <div data-setting-key="{{id}}">{{siteElementId}}</div>
+            </div>              
+        {{/.}}
+    </script>
+    <script src="mustache.min.js"></script>
+    <script src="options.js"></script>
+</body>
+</html>
